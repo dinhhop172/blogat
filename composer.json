@@ -1,0 +1,16 @@
+{
+    "name": "keira/blogat",
+    "authors": [
+        {
+            "name": "dinhhop172",
+            "email": "dinhhop172@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "controllers/",
+            "Models\\": ["models", "core"]
+        }
+    }
+}
