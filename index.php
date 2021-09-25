@@ -18,10 +18,10 @@
             if(method_exists($controller, $action)){
                 call_user_func([new $controller(), $action]);
             }else {
-                echo '404 not found!!!';
+                echo 'method not found!!!';
             }
         } else {
-            echo '404 not found!!!';
+            echo '404 not found in array!!!';
         }
     }
 ?>

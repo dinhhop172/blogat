@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Edit</h4>
-            <form action="?controller=user&action=update&id=<?= $data['id'] ?>" method="post">
+            <form action="?c=user&action=update&id=<?= $data['id'] ?>" method="post">
                 <div class="form-group">
                     <label for="">Name</label>
                     <input type="text" name="name" value="<?= isset($data['name']) ? $data['name'] : '' ?>" class="form-control" placeholder="" aria-describedby="helpId">

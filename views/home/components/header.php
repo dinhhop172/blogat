@@ -57,7 +57,7 @@
                </button>
                <a class="navbar-brand" href="index.php"><img src="assets/home/images/lg4.png" alt=""></a>
                <div class="collapse navbar-collapse" id="navbarCollapse">
-                  <ul class="navbar-nav mr-auto">
+                  <ul class="navbar-nav <?php if(!isset($_SESSION['user'])){echo 'mr-auto';} ?>">
                      <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
                      </li>
@@ -65,6 +65,13 @@
                         <a class="nav-link" href="contact.php">Contact Us</a>
                      </li>
                   </ul>
+                  <?php if(isset($_SESSION['user'])){ ?>
+                  <ul class="navbar-nav m-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="javascripts:;">Hi <?= $_SESSION['user']['name'] ?>!</a>
+                     </li>
+                  </ul>
+                  <?php } ?>
                   <ul class="navbar-nav mr-2">
                      <form action="search.php" class="form-inline" method="get">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search  " aria-label="Search" name="search">
@@ -72,12 +79,18 @@
                      </form>
                   </ul>
                   <ul class="navbar-nav mr-2">
+                     <?php if(isset($_SESSION['user'])){ ?>
+                        <li class="nav-item">
+                           <a class="nav-link" href="?a=logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        </li>
+                     <?php }else{ ?>
                      <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-android"></i></a>
+                        <a class="nav-link" href="?c=home&a=login">Login</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-apple"></i></a>
                      </li>
+                     <?php } ?>
                   </ul>
                </div>
             </nav>
