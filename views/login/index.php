@@ -45,7 +45,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" name="rem" id="remember">
+              <input type="checkbox" name="rem" id="remember" <?= isset($_COOKIE['password']) ? 'checked' : '' ?>>
               <label for="remember">
                 Remember Me
               </label>

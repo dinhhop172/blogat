@@ -1,20 +1,68 @@
 <?php
 
 class HomeController extends Controller {
-    public $security;
-    public $homeModel;
+    private $security;
+    private $homeModel;
+    private $cates;
+    private $posts;
+    private $admin;
+
 
     public function __construct()
     {
         $this->security = $this->model('SecurityModel');
         $this->homeModel = $this->model('HomeModel');
+        $this->cates = $this->model('CategoryModel');
+        $this->posts = $this->model('PostModel');
+        $this->admin = $this->model('AdminModel');
         
     }
 
     public function index()
     {
-        // $data = $this->userModel->index();
-        return $this->viewHome('home/index');
+        $data['cates'] = $this->cates->index();
+        $data['posts'] = $this->posts->index();
+        $data['admin'] = $this->posts->index();
+        // $data['hasmay'] = $this->posts->showByCate($data['cates']['id']);
+        
+        // foreach($data['cates'] as $cate){
+        //     // $this->viewHome('home/index', $data['cate'] = $cate);
+        //     $data['posts'] = $this->posts->showByCate($cate['id']);
+        //     if($data['posts'] !== null){
+        //         foreach($data['posts'] as $post){
+        //             return $this->viewHome('home/index', $data = [$cate,$post]);
+        //         }
+        //     }
+        // }
+        return $this->viewHome('home/index', $data);
+    }
+
+    public function find()
+    {
+        if(isset($_GET['id']) && !empty($_GET['id'])){
+            $id = $_GET['id'];
+            $data['postbycate'] = $this->homeModel->finPostByCate($id);
+            $data['catename'] = $this->homeModel->getNameCate($id);
+            $data['cates'] = $this->cates->index();
+            return $this->viewHome('home/pages/postbycate', $data);
+        }
+    }
+
+    public function single()
+    {
+        if(isset($_GET['id']) && !empty($_GET['id'])){
+            $id = $_GET['id'];
+            $data['cates'] = $this->cates->index();
+            $data['getpost'] = $this->homeModel->getPost($id);
+            return $this->viewHome('home/pages/singlepage', $data);
+        }
+    }
+
+
+    public static function checkCatHasManyPost()
+    {
+        // $data['cathaspost'] = $this->posts->showByCate();
+        // return $this->viewHome('home/index', $data['cathaspost']);
     }
 
     public function login(){
@@ -28,8 +76,6 @@ class HomeController extends Controller {
 
             $loggedUser = $this->security->validateLogin($email);
             if($loggedUser != null){
-                // $name = $loggedUser['name'];
-                // echo '<pre>';print_r($loggedUser);return;
                 if(password_verify($pass, $loggedUser['password'])){
                     if(!empty($_POST['rem'])){
                         setcookie('email', $email, time() + 86400, "/");
@@ -57,7 +103,6 @@ class HomeController extends Controller {
         }else{
             $_SESSION['login-null'] = "<script>alert('Vui lòng nhập đủ dữ liệu');</script>";
             return header("Location: ?a=login");
-            // $this->viewLogin('login/index', $_POST);
         }
     }
 
@@ -83,6 +128,7 @@ class HomeController extends Controller {
             }
         }
     }
+
 
     public function logout()
     {

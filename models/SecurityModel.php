@@ -27,6 +27,30 @@ class SecurityModel extends Database{
         if(!isset($_SESSION['admin'])) header('location:?a=login');
     }
 
+    public function editor(){
+        if($_SESSION['admin']['role'] == 'editor' || $_SESSION['admin']['role'] == 'admin'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function writer(){
+        if($_SESSION['admin']['role'] == 'writer' || $_SESSION['admin']['role'] == 'admin'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function admin(){
+        if($_SESSION['admin']['role'] == 'admin'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function user_exist($email){
         try{
             $sql = "SELECT * FROM {$this->table} WHERE email = ?";

@@ -27,6 +27,18 @@
          <!-- end blog-list -->
       </div>
 
+      <!-- category -->
+      <div class="widget">
+            <h2 class="widget-title" style="margin-bottom: 5px;">Categories</h2>
+            <div class="blog-list-widget">
+                  <div class="list-group">
+                  <?php foreach($data['cates'] as $cate){ ?>
+                     <p style="margin-bottom: 0px;"><a href="?c=home&a=find&id=<?= $cate['id'] ?>"><?= $cate['name'] ?></a></p>
+                  <?php } ?>
+                  </div>
+            </div><!-- end blog-list -->
+      </div>
+
       <div class="widget">
          <h2 class="widget-title">Follow Us</h2>
 
@@ -61,7 +73,6 @@
          </div>
       </div>
       <!-- end widget -->
-
    </div>
    <!-- end sidebar -->
 </div>

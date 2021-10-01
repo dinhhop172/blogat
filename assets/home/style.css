@@ -1676,3 +1676,11 @@ hr.invis3 {
     -o-border-radius: 50%;
     border-radius: 50%
 }
+.bg-secondary{
+    background-color: #6c757d!important;
+}
+.bg-like{
+    background-color: #5371ab!important;
+    font-size: 20px;
+    padding: 5px;
+}

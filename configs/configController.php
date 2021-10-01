@@ -3,6 +3,7 @@ $arrayController = [
     'home',
     'user',
     'admin',
-    'category'
+    'category',
+    'post'
 ];
 ?>
