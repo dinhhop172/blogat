@@ -21,8 +21,10 @@ class HomeController extends Controller {
     public function index()
     {
         $data['cates'] = $this->cates->index();
-        $data['posts'] = $this->posts->index();
+        $data['cate'] = $this->homeModel->cates();
+        $data['posts'] = $this->homeModel->index();
         $data['admin'] = $this->posts->index();
+        $data['popular'] = $this->homeModel->popular();
         // $data['hasmay'] = $this->posts->showByCate($data['cates']['id']);
         
         // foreach($data['cates'] as $cate){
@@ -44,6 +46,7 @@ class HomeController extends Controller {
             $data['postbycate'] = $this->homeModel->finPostByCate($id);
             $data['catename'] = $this->homeModel->getNameCate($id);
             $data['cates'] = $this->cates->index();
+            $data['popular'] = $this->homeModel->popular();
             return $this->viewHome('home/pages/postbycate', $data);
         }
     }
@@ -54,6 +57,7 @@ class HomeController extends Controller {
             $id = $_GET['id'];
             $data['cates'] = $this->cates->index();
             $data['getpost'] = $this->homeModel->getPost($id);
+            $data['popular'] = $this->homeModel->popular();
             return $this->viewHome('home/pages/singlepage', $data);
         }
     }
@@ -64,6 +68,25 @@ class HomeController extends Controller {
         // $data['cathaspost'] = $this->posts->showByCate();
         // return $this->viewHome('home/index', $data['cathaspost']);
     }
+
+    public function search()
+    {
+        if(isset($_POST['search'])){
+            $q = $_POST['search'];
+            $data['search'] = $this->homeModel->searchPost($q);
+            $data['cates'] = $this->cates->index();
+            $data['popular'] = $this->homeModel->popular();
+            return $this->viewHome('home/pages/search', $data);
+        }else{
+            echo '<h1>Not found</h1>';
+        }
+    }
+
+    // public function popular()
+    // {
+    //     $data['popular'] = $this->homeModel->popular();
+    //     return $this->viewHome('home/index', $data);
+    // }
 
     public function login(){
         return $this->viewLogin('login/index');

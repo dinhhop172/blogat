@@ -9,7 +9,7 @@
                <!-- end blog-top -->
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1 mb-4">
-                            <p class="mb-0 text-center bg-like text-white"><?= $data['catename']['name'] ?><p>
+                            <p class="mb-0 text-center bg-like"><?= $data['catename']['name'] ?><p>
                         </div>
                     </div>
                     <!-- //o day -->

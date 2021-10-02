@@ -62,7 +62,7 @@
                         <a class="nav-link" href="index.php">Home</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact Us</a>
+                        <a class="nav-link" href="javascrip:;">Contact Us</a>
                      </li>
                   </ul>
                   <?php if(isset($_SESSION['user'])){ ?>
@@ -73,8 +73,8 @@
                   </ul>
                   <?php } ?>
                   <ul class="navbar-nav mr-2">
-                     <form action="search.php" class="form-inline" method="get">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search  " aria-label="Search" name="search">
+                     <form action="?c=home&a=search" class="form-inline" method="post">
+                        <input class="form-control mr-sm-2" name="search" placeholder="Search  " aria-label="Search">
                         <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search" style="cursor: pointer;" name="search-btn">
                      </form>
                   </ul>

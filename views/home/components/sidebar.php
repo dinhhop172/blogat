@@ -10,20 +10,21 @@
       </div>
       <!-- end widget -->
       <!-- end widget -->
-
       <div class="widget">
          <h2 class="widget-title">Popular Posts</h2>
+         <?php foreach($data['popular'] as $popular){ ?>
          <div class="blog-list-widget">
             <div class="list-group">
-                  <a href="singlepage.php?id=" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <a href="?a=home&a=single&id=<?= $popular['id'] ?>" class="list-group-item list-group-item-action flex-column align-items-start">
                      <div class="w-100 justify-content-between">
-                        <img src="uploads/" alt="" class="img-fluid float-left">
-                        <h5 class="mb-1">icn asjkdklsa</h5>
-                        <small>12:123</small>
+                        <img src="assets/uploads/<?= $popular['img'] ?>" alt="" class="img-fluid float-left">
+                        <h5 class="mb-1"><?= $popular['title'] ?></h5>
+                        <small><?= $popular['created_at'] ?></small>
                      </div>
                   </a>
             </div>
          </div>
+         <?php } ?>
          <!-- end blog-list -->
       </div>
 

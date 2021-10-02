@@ -17,11 +17,11 @@
                
                <?php
                
-               foreach($data['cates'] as $cate){
+               foreach($data['cate'] as $cate){
                      ?>
                      <div class="row">
                         <div class="col-lg-10 offset-lg-1 mb-4">
-                           <p class="mb-0 text-center bg-like text-white"><?= $cate['name'] ?><p>
+                           <p class="mb-0 text-center bg-like"><?= $cate['name'] ?><p>
                         </div>
                      </div>
                      <?php

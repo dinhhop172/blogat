@@ -70,7 +70,7 @@
       <div class="row">
          <div class="col-md-12 text-center">
             <br>
-            <div class="copyright">&copy; Keira Blog. Design: <a href="http://html.design">HTML Design</a>.</div>
+            <div class="copyright">&copy;Blog. Design: <a href="http://html.design">HTML Design</a>.</div>
          </div>
       </div>
    </div>

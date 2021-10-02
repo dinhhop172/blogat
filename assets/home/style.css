@@ -1680,7 +1680,9 @@ hr.invis3 {
     background-color: #6c757d!important;
 }
 .bg-like{
-    background-color: #5371ab!important;
+    /* background-color: #5371ab!important; */
     font-size: 20px;
+    color: black;
+    border-bottom: 1px solid black;
     padding: 5px;
 }
