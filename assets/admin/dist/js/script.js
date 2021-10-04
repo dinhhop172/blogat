@@ -102,39 +102,46 @@ $('#adddm_sub').on('click', function(e){
         }
     });
 
-$("#addpost_sub").on('click', function(e){
-    if($("#addpost-form")[0].checkValidity()){
-        e.preventDefault();
-        var property = document.getElementById('img').files[0];
-        // var image_name = property.name;
-        // var image_extension = image_name.split('.').pop().toLowerCase();
+    $("#addpost_sub").on('click', function(e){
+        if($("#addpost-form")[0].checkValidity()){
+            e.preventDefault();
+            var property = document.getElementById('img').files[0];
+            // var image_name = property.name;
+            // var image_extension = image_name.split('.').pop().toLowerCase();
 
-        // var form_data = new FormData();
-        
-        // form_data.append("file",property);
-        var form_data = new FormData($('#addpost-form')[0]);
-        $.ajax({
-            url: '?c=post&a=store',
-            method: 'post',
-            processData: false,
-            contentType: false,
-            cache: false,
-            data: form_data,
-            success: function(response){
-            if(response == 'success'){
-                window.location = '?c=post';
-            }else{
-                $('.err_add_post').html(response);
-            }
-            },
-            error: function(e){
-            console.log(e);
-            }
-        });
-    }else{
-        $('.err_add_post').html("<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong class='text-center'>Thiếu dữ liệu</strong></div>");
-    }
-});
+            // var form_data = new FormData();
+            
+            // form_data.append("file",property);
+            var form_data = new FormData($('#addpost-form')[0]);
+            $.ajax({
+                url: '?c=post&a=store',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                cache: false,
+                data: form_data,
+                success: function(response){
+                    if(response == 'success'){
+                        window.location = '?c=post';
+                    }else{
+                        $('.err_add_post').html(response);
+                    }
+                    // console.log(response);
+                },
+                error: function(e){
+                    console.log(e);
+                }
+            });
+        }else{
+            $('.err_add_post').html("<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong class='text-center'>Thiếu dữ liệu</strong></div>");
+        }
+    });
+
+    $(".tags_select_choose").select2({
+        tags: true,
+        width: 'resolve',
+        tokenSeparators: [',']
+    });
 
 // $('#update_post').submit(function(e){
 //   if($("#update_post")[0].checkValidity()){
@@ -189,22 +196,22 @@ function example_image_upload_handler(blobInfo, success, failure, progress) {
         var json;
 
         if (xhr.status === 403) {
-        failure('HTTP Error: ' + xhr.status, {
-            remove: true
-        });
-        return;
+            failure('HTTP Error: ' + xhr.status, {
+                remove: true
+            });
+            return;
         }
 
         if (xhr.status < 200 || xhr.status >= 300) {
-        failure('HTTP Error: ' + xhr.status);
-        return;
+            failure('HTTP Error: ' + xhr.status);
+            return;
         }
 
         json = JSON.parse(xhr.responseText);
 
         if (!json || typeof json.location != 'string') {
-        failure('Invalid JSON: ' + xhr.responseText);
-        return;
+            failure('Invalid JSON: ' + xhr.responseText);
+            return;
         }
 
         success(json.location);
