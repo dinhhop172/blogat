@@ -20,7 +20,7 @@ class CategoryController extends Controller{
 
     public function store()
     {
-        if($this->security->writer()){
+        if($this->security->admin()){
             if(isset($_POST['action']) && $_POST['action'] == 'adddm' && !empty($_POST['name'])){
                 $data['name'] = $this->check_input($_POST['name']);
                 $data['slug'] = $this->slugify($data['name']);
@@ -40,7 +40,7 @@ class CategoryController extends Controller{
     }
 
     public function edit(){
-        if($this->security->editor()){
+        if($this->security->admin()){
             $id = isset($_GET['id']) ? $_GET['id'] : '';
             if(!isset($id) || empty($id)){
                 return $this->viewAdmin('admin/404');
@@ -54,7 +54,7 @@ class CategoryController extends Controller{
     }
 
     public function update(){
-        if($this->security->editor()){
+        if($this->security->admin()){
             $data['id'] = isset($_GET['id']) ? $this->check_input($_GET['id']) : '';
             if(isset($_POST['updatecate']) && !empty($_POST['name'])){
                 $data['name'] = $this->check_input($_POST['name']);
