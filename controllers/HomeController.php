@@ -5,6 +5,7 @@ class HomeController extends Controller {
     private $homeModel;
     private $cates;
     private $posts;
+    private $post_reviews;
     private $admin;
 
 
@@ -15,6 +16,7 @@ class HomeController extends Controller {
         $this->cates = $this->model('CategoryModel');
         $this->posts = $this->model('PostModel');
         $this->admin = $this->model('AdminModel');
+        $this->post_reviews = $this->model('PostReviewModel');
         
     }
 
@@ -152,6 +154,77 @@ class HomeController extends Controller {
         }
     }
 
+
+    public function review()
+    {
+        if(isset($_POST['rating_data']) && !empty($_POST['name']) && !empty($_POST['review'])){
+            $data['name'] = $_POST['name'];
+            $data['rating'] = $_POST['rating_data'];
+            $data['review'] = $_POST['review'];
+            $data['created_at'] = time();
+            if($this->post_reviews->store($data)){
+                echo 'success';
+            }
+        }
+    }
+
+    public function loadrating()
+    {
+        if(isset($_POST['action']) && $_POST['action'] == 'load_rating'){
+            $average_rating = 0;
+            $total_review = 0;
+            $five = 0;
+            $four = 0;
+            $three = 0;
+            $two = 0;
+            $one = 0;
+            $total_user_rating = 0;
+            $review_content = array();
+
+            $data = $this->post_reviews->index();
+            foreach($data as $item){
+                $review_content[] = [
+                    'name' => $item['name'],
+                    'rating' => $item['rating'],
+                    'review' => $item['review'],
+                    'created_at' => date('l jS, F Y h:i:s A', $item['created_at']),
+                ];
+                if($item["rating"] == '5'){
+                    $five++;
+                }
+                if($item["rating"] == '4'){
+                    $four++;
+                }
+                if($item["rating"] == '3'){
+                    $three++;
+                }
+                if($item["rating"] == '2'){
+                    $two++;
+                }
+                if($item["rating"] == '1'){
+                    $one++;
+                }
+                $total_review++;
+                $total_user_rating += $item["rating"];
+            }
+            $average_rating = $total_user_rating / $total_review;
+
+            $output = [
+                'average_rating'	=>	number_format($average_rating, 1),
+                'total_review'		=>	$total_review,
+                'five'	=>	$five,
+                'four'	=>	$four,
+                'three'	=>	$three,
+                'two'	=>	$two,
+                'one'	=>	$one,
+                'review_data'		=>	$review_content
+            ];
+            echo json_encode($output);
+            // echo '<pre>';print_r($review_content);
+        }else{
+            echo json_encode('not');
+        }
+    }
 
     public function logout()
     {

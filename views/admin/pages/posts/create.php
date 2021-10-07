@@ -29,6 +29,13 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Nhập tags cho bài viết</label><br>
+                        <select name="tags[]" style="width: 100%" class="form-control tags_select_choose" multiple="multiple">
+                            <option value="">aksldjajskd</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                       <label for="">Image</label>
                       <input type="file" name="img" id="img" class="form-control mb-2" placeholder="" required>
                       <img src="" alt="" id="showImg" class="show_img">

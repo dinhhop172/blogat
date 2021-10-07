@@ -3,6 +3,8 @@
 
         private $postModel; 
         private $cateModel; 
+        private $tagModel; 
+        private $postagModel; 
         private $security;
         
         public function __construct()
@@ -10,6 +12,8 @@
             SecurityModel::verifyUser();
             $this->postModel = $this->model('PostModel');
             $this->cateModel = $this->model('CategoryModel');
+            $this->tagModel = $this->model('TagModel');
+            $this->postagModel = $this->model('PostagModel');
             $this->security = $this->model('SecurityModel');
         }
 
@@ -63,36 +67,63 @@
         }
 
         public function store(){
-            if($this->security->writer()){
-                if(!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['category_id'])){
-                    if(!empty($_FILES['img']['name'])){
-                        $imageFileType = strtolower(pathinfo(basename($_FILES["img"]["name"]), PATHINFO_EXTENSION));
-                        $imgName = date('Y-m-d-H-i-s') . '.' . $imageFileType;
-                        
-                        $data['cat_id'] = $_POST['category_id'];
-                        $data['user_id'] = $_SESSION['admin']['id'];
-                        $data['title'] = $_POST['title'];
-                        $data['img'] = $imgName;
-                        $data['slug'] = $this->slugify($_POST['title']);
-                        $data['content'] = $_POST['content'];
-                        if($this->addImage()){
-                            if($this->postModel->store($data)){
-                                echo 'success';
-                                $_SESSION['author'] = "<script>alert('Thêm thành công')</script>";
-                                // echo '<pre>';print_r($data);
-                            }else{
-                                echo $this->showMessage('danger', 'Vui lòng thử lại sau!!');
+            
+                if($this->security->writer()){
+                    if(!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['category_id']) &&!empty($_POST['tags'])){
+                        if(!empty($_FILES['img']['name'])){
+                            try {
+                                // $this->postModel->conn->beginTransaction();
+                                $imageFileType = strtolower(pathinfo(basename($_FILES["img"]["name"]), PATHINFO_EXTENSION));
+                                $imgName = date('Y-m-d-H-i-s') . '.' . $imageFileType;
+                                
+                                $data['cat_id'] = $_POST['category_id'];
+                                $data['user_id'] = $_SESSION['admin']['id'];
+                                $data['title'] = $_POST['title'];
+                                $data['img'] = $imgName;
+                                $data['slug'] = $this->slugify($_POST['title']);
+                                $data['content'] = $_POST['content'];
+                                
+                                
+                                if($this->addImage()){
+                                    if($this->postModel->store($data)){
+                                        
+                                        $_SESSION['author'] = "<script>alert('Thêm thành công')</script>";
+                                        // echo '<pre>';print_r($data);
+                                        // $post = $this->postModel->conn->lastInsertId();
+                                        // $tag = $_POST['tags'];
+                                        // foreach($tag as $itemTag){
+                                        //     // $this->tagModel->store($itemTag);
+                                        //     $tagId[] = $this->tagModel->store($itemTag)->rowCount();
+                                        // }
+                                        // $tagIdCount = count($tagId);
+                                        // $post_tags['post_id'] = $post;
+                                        // $post_tags['tag_id'] = $this->tagModel->countId($tagIdCount);
+
+                                        // foreach($post_tags['tag_id'] as $postag){
+                                        //     $this->postagModel->store($post_tags['post_id'], $postag);
+                                        // }
+                                        echo 'success';
+                                        
+                                    }else{
+                                        echo $this->showMessage('danger', 'Vui lòng thử lại sau!!');
+                                    }
+                                }
+                                // $this->postModel->conn->commit();
+                                
+                            } catch (Exception $e) {
+                                // $this->postModel->conn->rollback();
+                                die('err: '. $e->getMessage());
                             }
+                        }else{
+                            echo $this->showMessage('warning', 'Thiếu thông tin anhr!!');
                         }
                     }else{
-                        echo $this->showMessage('warning', 'Thiếu thông tin anhr!!');
+                        echo $this->showMessage('warning', 'Thiếu thông tin!!');
                     }
                 }else{
-                    echo $this->showMessage('warning', 'Thiếu thông tin!!');
+                    echo $this->showMessage('warning', 'Bạn không có quyền!!');
                 }
-            }else{
-                echo $this->showMessage('warning', 'Bạn không có quyền!!');
-            }
+            
         }
 
         public function asd(){
@@ -173,6 +204,7 @@
             }
         }
 
+
         public function destroy(){
             if($this->security->admin()){
                 if(!empty($_GET['id'])){
@@ -187,5 +219,6 @@
                 return header('location:?c=post');
             }
         }
+
     }
 ?>

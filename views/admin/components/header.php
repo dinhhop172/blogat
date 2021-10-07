@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="assets/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="assets/admin/dist/css/select2.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.2/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="assets/admin/dist/css/style.css">
 </head>

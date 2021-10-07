@@ -1,7 +1,7 @@
 <?php 
 
-class CategoryModel extends Database{
-    private $table = 'categories';
+class TagModel extends Database{
+    private $table = 'tags';
 
     public function __construct() {
         parent::getConnect();
@@ -18,17 +18,16 @@ class CategoryModel extends Database{
         }
     }
 
-    public function store($data)
+    public function store($name)
     {
         try{
-            $sql = "INSERT INTO {$this->table} (name, slug) VALUES (:name, :slug)";
+            $sql = "INSERT INTO {$this->table} (name) VALUES (:name)";
             $pre = $this->conn->prepare($sql);
-            $pre->bindParam(':name', $data['name'], PDO::PARAM_STR);
-            $pre->bindParam(':slug', $data['slug'], PDO::PARAM_STR);
-            $result = $pre->execute();
-            return $result;
+            $pre->bindParam(':name', $name, PDO::PARAM_STR);
+            $pre->execute();
+            return $pre;
         }catch(Exception $e){
-            die("Error cate->store() " . $e->getMessage());
+            die("Error tag->store() " . $e->getMessage());
         }
     }
 
@@ -48,11 +47,10 @@ class CategoryModel extends Database{
     public function update($data)
     {
         try {
-            $sql = "UPDATE {$this->table} SET name=?, slug=? where id=?";
+            $sql = "UPDATE {$this->table} SET name=?, where id=?";
             $pre = $this->conn->prepare($sql);
             $pre->bindParam(1, $data['name'], PDO::PARAM_STR);
-            $pre->bindParam(2, $data['slug'], PDO::PARAM_STR);
-            $pre->bindParam(3, $data['id'], PDO::PARAM_INT);
+            $pre->bindParam(2, $data['id'], PDO::PARAM_INT);
             return $pre->execute();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -69,7 +67,20 @@ class CategoryModel extends Database{
             $pre->bindParam(':id', $id, PDO::PARAM_INT);
             return $pre->execute();
         }catch(Exception $e){
-            die("Error cate->delete() " . $e->getMessage());
+            die("Error tag->delete() " . $e->getMessage());
+        }
+    }
+
+    public function countId($num)
+    {
+        try{
+            $sql = "SELECT {$this->table}.id FROM {$this->table} ORDER BY {$this->table}.id DESC LIMIT ?";
+            $pre = $this->conn->prepare($sql);
+            $pre->bindParam('1', $num, PDO::PARAM_INT);
+            $pre->execute();
+            return $pre->fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            die($e->getMessage());
         }
     }
 }

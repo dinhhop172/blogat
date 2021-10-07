@@ -14,7 +14,8 @@
                 if (empty($this->conn)) {
                     $this->conn = new PDO(
                         "mysql:host=$this->host;dbname=$this->dbname","$this->username","$this->password",
-                        array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+                        array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                                PDO::MYSQL_ATTR_FOUND_ROWS => true)
                     );
                 }
             } catch (Exception $e) {

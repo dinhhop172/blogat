@@ -3,6 +3,7 @@
 class HomeModel  extends Database{
     public $conn;
     private $table = 'users';
+    private $review = 'post_reviews';
     private $posts = 'posts';
 
     public function __construct() {
@@ -110,6 +111,8 @@ class HomeModel  extends Database{
             die("Error home->searchPost() " . $e->getMessage());
         }
     }
+
+    
 }
 
 ?>

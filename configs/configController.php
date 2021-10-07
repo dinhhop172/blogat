@@ -4,6 +4,7 @@ $arrayController = [
     'user',
     'admin',
     'category',
-    'post'
+    'post',
+    'tag'
 ];
 ?>

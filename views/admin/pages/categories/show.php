@@ -9,7 +9,6 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>User id</th>
                     <th>Name</th>
                     <th>Slug</th>
                     <th>Created at</th>
@@ -20,7 +19,6 @@
                 <?php foreach($data as $item){ ?>
                     <tr>
                         <td><?= $item['id'] ?></td>
-                        <td><?= $item['user_id'] ?></td>
                         <td><?= $item['name'] ?></td>
                         <td><?= $item['slug'] ?></td>
                         <td><?= $item['created_at'] ?></td>
@@ -34,7 +32,6 @@
             <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Userid</th>
                     <th>Name</th>
                     <th>Slug</th>
                     <th>Created at</th>

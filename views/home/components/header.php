@@ -24,6 +24,8 @@
 <!-- Bootstrap core CSS -->
 <link href="assets/home/css/bootstrap.css" rel="stylesheet">
 
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+
 <!-- FontAwesome Icons core CSS -->
 <link href="assets/home/css/font-awesome.min.css" rel="stylesheet">
 

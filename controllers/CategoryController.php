@@ -24,7 +24,6 @@ class CategoryController extends Controller{
             if(isset($_POST['action']) && $_POST['action'] == 'adddm' && !empty($_POST['name'])){
                 $data['name'] = $this->check_input($_POST['name']);
                 $data['slug'] = $this->slugify($data['name']);
-                $data['user_id'] = $_SESSION['admin']['id'];
                 if($this->cateModel->store($data)){
                     echo 'success';
                     $_SESSION['author'] = "<script>alert('Thêm thành công')</script>";
@@ -59,7 +58,6 @@ class CategoryController extends Controller{
             if(isset($_POST['updatecate']) && !empty($_POST['name'])){
                 $data['name'] = $this->check_input($_POST['name']);
                 $data['slug'] = $this->slugify($data['name']);
-                $data['user_id'] = $_SESSION['admin']['id'];
                 if($this->cateModel->update($data)){
                     $_SESSION['author'] = "<script>alert('Cập nhật thành công')</script>";
                     return header("Location: ?c=category");

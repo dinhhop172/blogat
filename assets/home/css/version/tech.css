@@ -144,10 +144,10 @@ h5 {
     color: #999 !important;
 }
 
-.fa-star {
+/* .fa-star {
     font-size: 12px;
     margin: 0 -2px 0 0;
-}
+} */
 
 .social-button {
     background-color: #dddddd;
@@ -329,4 +329,24 @@ a:focus {
         width: 100%;
         display: block;
     }
+}
+
+.progress-label-left
+{
+    float: left;
+    margin-right: 0.5em;
+    line-height: 1em;
+}
+.progress-label-right
+{
+    float: right;
+    margin-left: 0.3em;
+    line-height: 1em;
+}
+.star-light
+{
+    color:#e9ecef;
+}
+.border-0{
+    border: none !important;
 }
