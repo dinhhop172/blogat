@@ -210,14 +210,14 @@ class HomeController extends Controller {
             $average_rating = $total_user_rating / $total_review;
 
             $output = [
-                'average_rating'	=>	number_format($average_rating, 1),
-                'total_review'		=>	$total_review,
-                'five'	=>	$five,
-                'four'	=>	$four,
-                'three'	=>	$three,
-                'two'	=>	$two,
-                'one'	=>	$one,
-                'review_data'		=>	$review_content
+                'average_rating'=>number_format($average_rating, 1),
+                'total_review'=>$total_review,
+                'five'=>$five,
+                'four'=>$four,
+                'three'=>$three,
+                'two'=>$two,
+                'one'=>$one,
+                'review_data'=>$review_content
             ];
             echo json_encode($output);
             // echo '<pre>';print_r($review_content);
