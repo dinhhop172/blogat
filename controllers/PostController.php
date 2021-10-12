@@ -89,12 +89,26 @@
                                         
                                         $_SESSION['author'] = "<script>alert('Thêm thành công')</script>";
                                         // echo '<pre>';print_r($data);
-                                        // $post = $this->postModel->conn->lastInsertId();
-                                        // $tag = $_POST['tags'];
-                                        // foreach($tag as $itemTag){
-                                        //     // $this->tagModel->store($itemTag);
-                                        //     $tagId[] = $this->tagModel->store($itemTag)->rowCount();
-                                        // }
+                                        $post = $this->postModel->conn->lastInsertId();
+                                        $tag = $_POST['tags'];
+                                        foreach($tag as $itemTag){
+                                            // if($this->tagModel->checkNameExist($itemTag)){
+                                                // $this->tagModel->deleteWithName($itemTag);
+                                                $this->tagModel->store($itemTag);
+                                                $je = $this->tagModel->selectIdByName($itemTag);
+                                                $this->postagModel->store($post, (int)$je['id']);
+                                                
+                                            // }
+                                            // else{
+                                                // $this->tagModel->deleteWithName($itemTag);
+                                                // $this->tagModel->store($itemTag);
+                                                // $je = $this->tagModel->selectByName($itemTag);
+                                                // $this->postagModel->store($post, (int)$je['id']);
+                                                // var_dump($je);
+                                            // }
+
+                                            // $tagId[] = $this->tagModel->store($itemTag)->rowCount();
+                                        }
                                         // $tagIdCount = count($tagId);
                                         // $post_tags['post_id'] = $post;
                                         // $post_tags['tag_id'] = $this->tagModel->countId($tagIdCount);

@@ -71,6 +71,41 @@ class TagModel extends Database{
         }
     }
 
+    public function deleteWithName($name){
+        try{
+            $sql = "DELETE FROM {$this->table} WHERE name = :name";
+            $pre = $this->conn->prepare($sql);
+            $pre->bindParam(':name', $name, PDO::PARAM_STR);
+            return $pre->execute();
+        }catch(Exception $e){
+            die("Error tag->delete() " . $e->getMessage());
+        }
+    }
+
+    public function selectIdByName($name)
+    {
+        try {
+            $sql = "SELECT id FROM {$this->table} WHERE name = ?";
+            $pre = $this->conn->prepare($sql);
+            $pre->bindParam(1, $name, PDO::PARAM_STR);
+            $pre->execute();
+            return $pre->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function checkNameExist($name){
+        try{
+            $sql = "SELECT name FROM {$this->table} WHERE name = :name";
+            $pre = $this->conn->prepare($sql);
+            $pre->bindParam(':name', $name, PDO::PARAM_STR);
+            return $pre->execute();
+        }catch(Exception $e){
+            die("Error tag->delete() " . $e->getMessage());
+        }
+    }
+
     public function countId($num)
     {
         try{
