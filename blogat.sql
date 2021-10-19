@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 04, 2021 at 09:52 AM
--- Server version: 8.0.26-0ubuntu0.20.04.2
+-- Generation Time: Oct 19, 2021 at 02:03 PM
+-- Server version: 8.0.26-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `id` int NOT NULL,
-  `user_id` int NOT NULL,
   `name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `slug` varchar(250) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -40,11 +39,11 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `user_id`, `name`, `slug`, `created_at`) VALUES
-(14, 49, 'the gioi', 'the-gioi', '2021-09-30 02:45:44'),
-(18, 47, 'giai tri', 'giai-tri', '2021-09-30 03:38:48'),
-(19, 50, 'keira', 'keira', '2021-09-30 07:57:15'),
-(20, 45, 'tin tuc mua sam', 'tin-tuc-mua-sam', '2021-09-30 08:48:39');
+INSERT INTO `categories` (`id`, `name`, `slug`, `created_at`) VALUES
+(14, 'the gioi', 'the-gioi', '2021-09-30 02:45:44'),
+(18, 'giai tri', 'giai-tri', '2021-09-30 03:38:48'),
+(19, 'keira', 'keira', '2021-09-30 07:57:15'),
+(20, 'tin tuc mua sam', 'tin-tuc-mua-sam', '2021-09-30 08:48:39');
 
 -- --------------------------------------------------------
 
@@ -69,17 +68,39 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `cat_id`, `user_id`, `title`, `img`, `slug`, `content`, `status`, `created_at`) VALUES
-(23, 14, 45, 'the gioi haha', '2021-09-30-15-35-14.png', 'dasdasd', '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'inactive', '2021-09-30 08:35:14'),
-(24, 14, 45, 'con sau mau gi', '2021-09-30-15-40-55.png', 'dadasd', '<p>dasd&aacute;d<img src=\"assets/uploads/2021-09-30-15-40-53.png\" alt=\"\" width=\"191\" height=\"87\" /></p>', 'active', '2021-09-30 08:40:55'),
-(25, 14, 45, 'the thao chat luowgn', '2021-09-30-15-48-19.png', 'dasdasd', '<p>123123</p>', 'active', '2021-09-30 08:48:19'),
-(26, 18, 47, 'ao quan the thao dep', '2021-09-30-15-50-22.png', 'dadasd', '<p>asdasd</p>', 'active', '2021-09-30 08:50:22'),
-(28, 14, 25, 'a', '2021-10-03-10-06-58.png', 'a', '<p>aa</p>', 'inactive', '2021-10-03 03:06:58'),
-(29, 19, 25, 'adsas', '2021-10-03-10-08-34.png', 'adsas', '<p>asd</p>', 'inactive', '2021-10-03 03:08:34'),
-(33, 14, 25, 'asd', '2021-10-03-10-18-01.png', 'asd', '<p>asd</p>', 'inactive', '2021-10-03 03:18:01'),
-(34, 14, 25, 'asd', '2021-10-03-10-20-54.png', 'asd', '<p>asd</p>', 'inactive', '2021-10-03 03:20:54'),
-(35, 14, 25, 'ád', '2021-10-03-10-28-54.png', 'ad', '<p>asdd</p>', 'inactive', '2021-10-03 03:28:54'),
-(36, 14, 25, 'ád', '2021-10-03-10-29-00.png', 'ad', '<p>asdd</p>', 'inactive', '2021-10-03 03:29:00'),
-(37, 18, 25, 'a', '2021-10-03-10-30-39.png', 'a', '<p>asd</p>', 'inactive', '2021-10-03 03:30:39');
+(106, 18, 25, 'game pokemon 2021', '2021-10-05-11-21-04.png', 'game-pokemon-2021', '<h3 style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 17px; font-family: Poppins, serif; line-height: 30px; color: #111111; font-size: 22px; background-color: #ffffff;\"><span style=\"box-sizing: inherit; font-weight: bolder;\">Nam non velit est. Sed lobortis arcu vitae nunc molestie consectetur. Nam eget neque ac ex fringilla dignissim eu ac est. Nunc et nisl vel odio posuere.</span></h3>\r\n<p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 26px; font-family: Poppins, serif; color: #5e5e5e; font-size: 15px; line-height: 26px; background-color: #ffffff;\">Vivamus non condimentum orci. Pellentesque venenatis nibh sit amet est vehicula lobortis. Cras eget aliquet eros. Nunc lectus elit, suscipit at nunc sed, finibus imperdiet ipsum. Maecenas dapibus neque sodales nulla finibus volutpat. Integer pulvinar massa vitae ultrices posuere. Proin ut tempor turpis. Mauris felis neque, egestas in lobortis et, sodales non ante. Ut vestibulum libero quis luctus tempus. Nullam eget dignissim massa. Vivamus id condimentum orci. Nunc ac sem urna. Aliquam et hendrerit nisl massa nunc.</p>\r\n<p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 26px; font-family: Poppins, serif; color: #5e5e5e; font-size: 15px; line-height: 26px; background-color: #ffffff;\">Morbi pharetra porta consequat. Aenean et diam sapien.&nbsp;<a style=\"box-sizing: inherit; background-color: transparent; touch-action: manipulation; font-weight: bold; color: #ff6347 !important; text-decoration-line: none !important;\" href=\"https://html.design/demo/tech-blog/tech-single.html\">Interdum et malesuada</a>&nbsp;fames ac ante ipsum primis in faucibus. Pellentesque dictum ligula iaculis, feugiat metus eu, sollicitudin ex. Quisque eu ullamcorper ligula. In vel ex ac purus finibus viverra. Maecenas pretium lobortis turpis. Fusce lacinia nisi in tortor massa nunc.</p>\r\n<ul class=\"check\" style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 25px; padding-bottom: 0px; list-style: none; color: #5e5e5e; font-family: Poppins, serif; font-size: 15px; background-color: #ffffff;\">\r\n<li style=\"box-sizing: inherit;\">Integer sit amet odio ac lectus imperdiet elementum.</li>\r\n<li style=\"box-sizing: inherit;\">Praesent vitae lacus sed lacus ullamcorper mollis.</li>\r\n<li style=\"box-sizing: inherit;\">Donec vitae metus ac felis vulputate tincidunt non et ex.</li>\r\n<li style=\"box-sizing: inherit;\">In dapibus sapien at viverra venenatis.</li>\r\n<li style=\"box-sizing: inherit;\">Pellentesque mollis velit id maximus finibus.</li>\r\n</ul>\r\n<p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 26px; font-family: Poppins, serif; color: #5e5e5e; font-size: 15px; line-height: 26px; background-color: #ffffff;\">Proin ultricies nulla consectetur, sollicitudin dolor at, sollicitudin mauris. Maecenas at nunc nunc. Ut nulla felis, tincidunt et porttitor at, rutrum in dolor. Aenean id tincidunt ligula. Donec vitae placerat odio. Mauris accumsan nibh ut nunc maximus, ac auctor elit vehicula. Cras leo sem, vehicula a ultricies ac, condimentum vitae lectus. Sed ut eros euismod, luctus nisl eu, congue odio.<img style=\"float: left;\" src=\"https://html.design/demo/tech-blog/upload/tech_menu_10.jpg\" alt=\"\" width=\"286\" height=\"164\" />Suspendisse ultrices placerat dolor sed efficitur. Morbi in laoreet diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut massa id lectus laoreet porta non in metus. Donec nibh justo, tincidunt non justo ut, tincidunt malesuada turpis. Cras pellentesque sollicitudin ex eget pharetra.rta non in metus. Donec nibh justo, tincidunt non justo ut, tincidunt malesuada turpis. Cras pellentesque sollicitudin ex eget pharetra</p>\r\n<p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 26px; font-family: Poppins, serif; color: #5e5e5e; font-size: 15px; line-height: 26px; background-color: #ffffff;\">&nbsp;</p>', 'active', '2021-10-05 04:21:04'),
+(143, 14, 25, 'xin chao cac ban', '2021-10-19-11-40-47.jpg', 'xin-chao-cac-ban', '<p>toi yeu cac ban</p>', 'active', '2021-10-11 10:04:35'),
+(146, 18, 25, 'dasdad', '2021-10-19-12-33-24.jpg', 'dasdad', 'asdasdasd', 'inactive', '2021-10-19 05:33:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_reviews`
+--
+
+CREATE TABLE `post_reviews` (
+  `id` int NOT NULL,
+  `post_id` int NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `rating` tinyint(1) NOT NULL,
+  `review` text NOT NULL,
+  `created_at` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `post_reviews`
+--
+
+INSERT INTO `post_reviews` (`id`, `post_id`, `name`, `rating`, `review`, `created_at`) VALUES
+(16, 143, 'asdasd', 5, 'dasd', 1634623928),
+(17, 106, 'asdasd', 5, 'dasd', 1634624231),
+(18, 143, 'asdasd', 5, 'asdasd', 1634624518),
+(19, 143, 'asdasd', 5, 'asdasd', 1634624639),
+(20, 143, 'asd', 0, 'asdasd', 1634624679),
+(21, 143, 'dasd', 5, 'asdasd', 1634624818),
+(22, 143, 'asd', 5, 'asd', 1634624874),
+(23, 143, 'sd', 5, 'dad', 1634624991),
+(24, 106, 'test', 4, 'asd', 1634626778);
 
 -- --------------------------------------------------------
 
@@ -99,8 +120,9 @@ CREATE TABLE `post_tags` (
 --
 
 INSERT INTO `post_tags` (`id`, `post_id`, `tag_id`, `created_at`) VALUES
-(1, 23, 1, '2021-10-03 01:35:07'),
-(2, 24, 1, '2021-10-03 01:45:55');
+(47, 143, 137, '2021-10-11 10:04:35'),
+(48, 148, 140, '2021-10-19 05:37:06'),
+(49, 149, 140, '2021-10-19 05:37:39');
 
 -- --------------------------------------------------------
 
@@ -119,19 +141,11 @@ CREATE TABLE `tags` (
 --
 
 INSERT INTO `tags` (`id`, `name`, `created_at`) VALUES
-(1, 'haha post', '2021-10-03 01:33:05'),
-(2, 'a', '2021-10-03 03:30:39'),
-(3, 'f', '2021-10-03 03:30:39'),
-(4, 'a', '2021-10-03 03:38:35'),
-(5, 'a', '2021-10-03 03:43:01'),
-(6, 'a', '2021-10-03 03:43:48'),
-(7, 'a', '2021-10-03 03:44:22'),
-(8, 'a', '2021-10-03 03:45:10'),
-(9, 'a', '2021-10-03 03:45:55'),
-(10, 'a', '2021-10-03 03:54:48'),
-(11, 'a', '2021-10-03 03:55:44'),
-(12, 'Doe', '2021-10-03 04:06:53'),
-(13, 'A', '2021-10-03 04:17:59');
+(137, 'xinchao', '2021-10-11 10:04:35'),
+(138, ',a', '2021-10-19 05:33:24'),
+(139, 'faff', '2021-10-19 05:36:15'),
+(140, 'fafaf', '2021-10-19 05:37:06'),
+(141, 'fafaf', '2021-10-19 05:37:39');
 
 -- --------------------------------------------------------
 
@@ -155,7 +169,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
 (25, 'babycool', 'keiradom296@gmail.com', '$2y$10$Y9qcHtC8NNMp8wetnL02.O7BLLiNQtZ5OvuEw6.62sV1ar0b/x.Z2', 'admin', '2021-09-22 10:06:35'),
 (45, 'hopdinh', 'hop@gmailcom', '$2y$10$HDZRE9x6.3wDgvSvvyyPZeVR51OAofx7AhxEzzTfWIRxKVLyImHly', 'writer', '2021-09-23 16:05:34'),
-(47, 'keira12', 'ki@gmail.com', '$2y$10$fUrpIvUDJr9udS3mhK48COKRyP5liJhpSPUyE3yAjyon2wefPP1kK', 'editor', '2021-09-24 02:43:05');
+(55, 'keira', 'keiradom296@gmail.com', '$2y$10$G8J.3lGwTKtZtVgINbkL2.0J5dcRy5K4LJE3EOOZFfMr.6em76ywG', 'admin', '2021-10-04 08:39:56');
 
 --
 -- Indexes for dumped tables
@@ -175,12 +189,16 @@ ALTER TABLE `posts`
   ADD KEY `cat_id` (`cat_id`);
 
 --
+-- Indexes for table `post_reviews`
+--
+ALTER TABLE `post_reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `post_tags`
 --
 ALTER TABLE `post_tags`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `post_tags_ibfk_1` (`post_id`),
-  ADD KEY `post_tags_ibfk_2` (`tag_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tags`
@@ -202,31 +220,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+
+--
+-- AUTO_INCREMENT for table `post_reviews`
+--
+ALTER TABLE `post_reviews`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `post_tags`
 --
 ALTER TABLE `post_tags`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Constraints for dumped tables
@@ -237,13 +261,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
-
---
--- Constraints for table `post_tags`
---
-ALTER TABLE `post_tags`
-  ADD CONSTRAINT `post_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  ADD CONSTRAINT `post_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

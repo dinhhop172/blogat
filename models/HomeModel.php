@@ -7,7 +7,7 @@ class HomeModel  extends Database{
     private $posts = 'posts';
 
     public function __construct() {
-        $this->conn = $this->getConnect();
+        $this->conn = parent::getConnect();
     }
 
     public function index(){
@@ -112,7 +112,17 @@ class HomeModel  extends Database{
         }
     }
 
-    
+    // public function reivewByPost()
+    // {
+    //     try{
+    //         $sql = "SELECT * FROM {$this->review} WHERE {$this->review}.status = 'active' ORDER BY {$this->review}.id DESC LIMIT 3 ";
+    //         $pre = $this->conn->prepare($sql);
+    //         $pre->execute();
+    //         return $pre->fetchAll(PDO::FETCH_ASSOC);
+    //     }catch(Exception $e){  
+    //         die("Error home->searchPost() " . $e->getMessage());
+    //     }
+    // }
 }
 
 ?>

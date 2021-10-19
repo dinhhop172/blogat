@@ -95,12 +95,13 @@ $(function(){
     $('#save_review').on('click', function(){
         let name = $('#user_name').val();
         let review = $('#user_review').val();
+        var id_post = $("#id_post").data('post');
         if(name == '' || review == '' ){
             alert('Please fill both field');
             return false;
         }else{
             $.ajax({
-                url: '?c=home&a=review',
+                url: '?c=home&a=review&id='+id_post,
                 method: 'POST',
                 data: {rating_data:rating_data, name:name, review:review},
                 success: function(succ){
@@ -109,6 +110,7 @@ $(function(){
                         $('#review_modal').modal('hide');
                         load_rating();
                     }
+                    // console.log(succ);
                 },
                 error: function(err){
                     console.log(err);
@@ -118,15 +120,16 @@ $(function(){
     });
 
     function load_rating() {
+        var id_post = $("#id_post").data('post');
         $.ajax({
-            url: '?c=home&a=loadrating',
+            url: '?c=home&a=loadrating&id='+id_post,
             method: 'POST',
             data: {action: 'load_rating'},
             dataType: 'JSON',
             success: function(data) {
                 console.log(data);
                 $('#average_rating').text(data.average_rating);
-                $('#total_review').text(data.total_review);
+                $('.total_review').text(data.total_review);
                 var count_star = 0;
                 $('.main_star').each(function(){
                     count_star++;

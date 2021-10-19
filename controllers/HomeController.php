@@ -154,11 +154,11 @@ class HomeController extends Controller {
         }
     }
 
-
     public function review()
     {
         if(isset($_POST['rating_data']) && !empty($_POST['name']) && !empty($_POST['review'])){
             $data['name'] = $_POST['name'];
+            $data['post_id'] = $_GET['id'];
             $data['rating'] = $_POST['rating_data'];
             $data['review'] = $_POST['review'];
             $data['created_at'] = time();
@@ -168,9 +168,19 @@ class HomeController extends Controller {
         }
     }
 
+    public function test()
+    {
+        $post_id = $_GET['id'];
+        if($this->post_reviews->index($post_id)){
+            echo '<pre>';print_r($this->post_reviews->index($post_id));
+        }
+    }
+
     public function loadrating()
     {
         if(isset($_POST['action']) && $_POST['action'] == 'load_rating'){
+            // echo '<pre>';print_r($_GET);exit;
+            $post_id = $_GET['id'];
             $average_rating = 0;
             $total_review = 0;
             $five = 0;
@@ -181,7 +191,7 @@ class HomeController extends Controller {
             $total_user_rating = 0;
             $review_content = array();
 
-            $data = $this->post_reviews->index();
+            $data = $this->post_reviews->index($post_id);
             foreach($data as $item){
                 $review_content[] = [
                     'name' => $item['name'],

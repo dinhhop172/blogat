@@ -9,7 +9,7 @@
                             <li class="breadcrumb-item"><a href="#">Blog</a></li>
                             <li class="breadcrumb-item active"><?= $data['getpost']['title'] ?></li>
                         </ol>
-
+        <!-- <h2><a href="?c=home&a=test&id=143">test</a></h2> -->
                         <span class="color-orange"><a href="tech-category-01.html" title="">Technology</a></span>
 
                         <h3><?= $data['getpost']['title'] ?></h3>
@@ -57,7 +57,7 @@
                                             <i class="fas fa-star star-light mr-1 main_star"></i>
                                             <i class="fas fa-star star-light mr-1 main_star"></i>
                                         </div>
-                                        <h3><span id="total_review">0</span> Review</h3>
+                                        <h3><span class="total_review">0</span> Review</h3>
                                     </div>
                                     <div class="col-sm-4">
                                         <p>
@@ -114,8 +114,8 @@
                     <hr class="invis1">
 
                     <div class="custombox clearfix">
-                        <h4 class="small-title">3 Reviews</h4>
-                        <div class="row">
+                        <h4 class="small-title "><span class="total_review"></span> Reviews</h4>
+                        <div class="row" id="id_post" data-post="<?= $_GET['id'] ?>">
                             <div class="col-lg-12">
                                 <div class="comments-list">
                                     <!-- <div class='media'>

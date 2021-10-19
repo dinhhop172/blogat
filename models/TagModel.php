@@ -2,9 +2,10 @@
 
 class TagModel extends Database{
     private $table = 'tags';
+    public $conn;
 
     public function __construct() {
-        parent::getConnect();
+        $this->conn = $this->getConnect();
     }
 
     public function index()
