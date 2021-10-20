@@ -133,7 +133,7 @@ $(function(){
                 var count_star = 0;
                 $('.main_star').each(function(){
                     count_star++;
-                    if(Math.ceil(data.average_rating) > count_star){
+                    if(Math.ceil(data.average_rating) >= count_star){
                         $(this).addClass('text-warning');
                         $(this).removeClass('star-light');
                     }

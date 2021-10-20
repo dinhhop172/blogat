@@ -1,5 +1,5 @@
 <?= (isset($_SESSION['author']) ? $_SESSION['author'] : '') ?>
-<h1>post day</h1>
+<!-- <h1>post day</h1> -->
 <div class="m-auto p-5">
     <div class="w-100 text-center mb-2">
         <a href="#" class="btn btn-secondary" data-target="#addpost" data-toggle="modal">Thêm bài viết</a>

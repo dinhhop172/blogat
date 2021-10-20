@@ -23,10 +23,10 @@
                 <input type="text" name="title" value="<?= $data['post']['title'] ?>" required class="form-control" placeholder="" aria-describedby="helpId">
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="">Slug</label>
                 <input type="text" name="slug" value="<?= $data['post']['slug'] ?>" required class="form-control" placeholder="" aria-describedby="helpId">
-              </div>
+              </div> -->
             
             <div class="form-group">
               <label for="">Status</label>

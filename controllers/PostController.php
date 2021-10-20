@@ -172,7 +172,7 @@
                     $id = $_GET['id'];
                     $post = $this->postModel->find($id);
 
-                    if(isset($_POST['updatepost']) && !empty($_POST['cat_id']) && !empty($_POST['title']) && !empty($_POST['slug']) && !empty($_POST['content'])){
+                    if(isset($_POST['updatepost']) && !empty($_POST['cat_id']) && !empty($_POST['title']) && !empty($_POST['content'])){
                         // echo '<pre>';print_r($_POST);
                         $data['cat_id'] = $_POST['cat_id'];
                         $data['user_id'] = $_SESSION['admin']['id'];
@@ -187,6 +187,7 @@
                             $imgName = date('Y-m-d-H-i-s') . '.' . $imageFileType;
                             $data['img'] = $imgName;
                             if($this->addImage()){
+                                
                                 if($this->postModel->update($data)){
                                     $this->addImage();
                                     $_SESSION['author'] = "<script>alert('Cập nhật thành công')</script>";
@@ -201,6 +202,7 @@
                             
                             if($this->postModel->update($data)){
                                 $this->addImage();
+                                $_SESSION['author'] = "<script>alert('Cập nhật thành công')</script>";
                                 return header('location:?c=post');
                             }else{
                                 echo $this->showMessage('danger', 'Vui lòng thử lại sau2!!');
